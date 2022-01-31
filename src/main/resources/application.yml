@@ -1,3 +1,6 @@
 micronaut:
   application:
     name: phonebook
+
+fauna:
+  secret: test-key
