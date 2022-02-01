@@ -1,26 +1,35 @@
-## Micronaut 3.3.0 Documentation
+# Phone book
 
-- [User Guide](https://docs.micronaut.io/3.3.0/guide/index.html)
-- [API Reference](https://docs.micronaut.io/3.3.0/api/index.html)
-- [Configuration Reference](https://docs.micronaut.io/3.3.0/guide/configurationreference.html)
-- [Micronaut Guides](https://guides.micronaut.io/index.html)
 
----
 
-- [Shadow Gradle Plugin](https://plugins.gradle.org/plugin/com.github.johnrengelman.shadow)## Feature serialization-bson
-  documentation
+## Build and run
 
-- [Micronaut Serialization BSON documentation](https://micronaut-projects.github.io/micronaut-serialization/1.0.x/guide/)
+### Build
 
-## Feature http-client documentation
+- Build regular jar
+```
+./gradlew clean build
+```
 
-- [Micronaut HTTP Client documentation](https://docs.micronaut.io/latest/guide/index.html#httpClient)
+- Build graalvm native image
+```
+./gradlew nativeCompile
+```
 
-## Feature mockito documentation
+### Run
+- Run regular jar 
+```
+ java -jar build/libs/phonebook-0.1-all.jar
+```
+- Run via gradlew 
+```
+./gradlew run
+```
+- Run native image 
+```
+./build/native/nativeCompile/phonebook 
+```
 
-- [https://site.mockito.org](https://site.mockito.org)
+### Note
 
-## Feature tomcat-server documentation
-
-- [Micronaut Tomcat Server documentation](https://micronaut-projects.github.io/micronaut-servlet/1.0.x/guide/index.html#tomcat)
-
+- Native image building requires graalvm to be built and installed

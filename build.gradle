@@ -35,7 +35,7 @@ java {
     targetCompatibility = JavaVersion.toVersion("17")
 }
 
-graalvmNative.toolchainDetection = false
+graalvmNative.toolchainDetection = true
 micronaut {
     runtime("tomcat")
     testRuntime("junit5")
@@ -46,3 +46,11 @@ micronaut {
 }
 
 
+graalvmNative {
+    binaries {
+        main {
+            imageName.set('phonebook')
+            buildArgs.add('--verbose')
+        }
+    }
+}
