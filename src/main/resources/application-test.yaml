@@ -1,0 +1,10 @@
+micronaut:
+  server:
+    port: 8010
+
+fauna:
+  secret: test-key
+
+mockito:
+  test:
+    enabled: true
