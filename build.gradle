@@ -12,15 +12,14 @@ repositories {
 
 dependencies {
     annotationProcessor("io.micronaut:micronaut-http-validation")
-    annotationProcessor("io.micronaut.serde:micronaut-serde-processor")
     implementation("io.micronaut:micronaut-http-client")
     implementation("io.micronaut:micronaut-runtime")
     implementation("io.micronaut:micronaut-inject")
-    implementation("io.micronaut.serde:micronaut-serde-bson")
     implementation("jakarta.annotation:jakarta.annotation-api")
-    runtimeOnly("ch.qos.logback:logback-classic")
     implementation("io.micronaut:micronaut-validation")
-    implementation ("com.faunadb:faunadb-java:$faunaVersion")
+    implementation("com.faunadb:faunadb-java:$faunaVersion")
+
+    runtimeOnly("ch.qos.logback:logback-classic")
 
     testImplementation("org.mockito:mockito-core")
 
@@ -37,8 +36,9 @@ java {
 
 graalvmNative.toolchainDetection = true
 micronaut {
-    runtime("tomcat")
+    runtime("netty")
     testRuntime("junit5")
+
     processing {
         incremental(true)
         annotations("org.abondar.experimental.*")

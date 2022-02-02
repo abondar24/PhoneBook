@@ -6,9 +6,9 @@ public interface FaunaRepository<T> {
 
   CompletableFuture<Long> nextId();
 
-  CompletableFuture<Void> saveOrUpdateRecord(T record);
+  void saveOrUpdateRecord(T record);
 
   CompletableFuture<T> find(long id);
 
-  CompletableFuture<Void> remove(long id);
+  void remove(long id);
 }

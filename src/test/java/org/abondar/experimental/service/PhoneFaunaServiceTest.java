@@ -13,6 +13,7 @@ import java.util.concurrent.CompletableFuture;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -37,7 +38,7 @@ public class PhoneFaunaServiceTest {
     var idCf = CompletableFuture.completedFuture(1L);
     CompletableFuture<Void> saveCf = CompletableFuture.completedFuture(null);
     when(repository.nextId()).thenReturn(idCf);
-    when(repository.saveOrUpdateRecord(any(PhoneRecord.class))).thenReturn(saveCf);
+    doNothing().when(repository).saveOrUpdateRecord(any(PhoneRecord.class));
 
     var res = phoneFaunaService.saveOrUpdateRecord(req);
     assertEquals(1L, res.id());
@@ -59,9 +60,7 @@ public class PhoneFaunaServiceTest {
   @Test
   public void removeTest() {
 
-    CompletableFuture<Void> delCF = CompletableFuture.completedFuture(null);
-    when(repository.remove(1L)).thenReturn(delCF);
-
+    doNothing().when(repository).remove(1L);
     phoneFaunaService.remove(1L);
     verify(repository, times(1)).remove(1L);
   }

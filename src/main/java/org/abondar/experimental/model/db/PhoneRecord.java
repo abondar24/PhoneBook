@@ -1,5 +1,6 @@
 package org.abondar.experimental.model.db;
 
+import com.faunadb.client.types.FaunaConstructor;
 import com.faunadb.client.types.FaunaField;
 
 public record PhoneRecord(
@@ -11,6 +12,7 @@ public record PhoneRecord(
         @FaunaField
         String phoneNumber) {
 
+    @FaunaConstructor
     public PhoneRecord(@FaunaField("id") long id, @FaunaField("name")
             String name, @FaunaField("number")
                                String phoneNumber) {

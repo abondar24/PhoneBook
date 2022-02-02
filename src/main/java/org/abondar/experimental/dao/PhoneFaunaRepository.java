@@ -1,5 +1,6 @@
 package org.abondar.experimental.dao;
 
+import io.micronaut.context.annotation.Value;
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
 import org.abondar.experimental.config.FaunaClientConfig;
@@ -23,18 +24,21 @@ import static org.abondar.experimental.dao.DaoUtil.COLLECTION_NAME;
 import static org.abondar.experimental.dao.DaoUtil.DATA_VAL;
 
 @Singleton
-public class PhoneRepository implements FaunaRepository<PhoneRecord> {
+public class PhoneFaunaRepository implements FaunaRepository<PhoneRecord> {
 
   @Inject private FaunaClientConfig client;
+
+  @Value("${fauna.secret}")
+  private String faunaKey;
 
   @Override
   public CompletableFuture<Long> nextId() {
 
-    return client.faunaClient().query(NewId()).thenApply(value -> value.to(Long.class).get());
+    return client.getClient().query(NewId()).thenApply(value -> value.to(Long.class).get());
   }
 
   @Override
-  public CompletableFuture<Void> saveOrUpdateRecord(PhoneRecord record) {
+  public void saveOrUpdateRecord(PhoneRecord record) {
 
     var idVal = Value(record.id());
     var recordVal = Value(record);
@@ -46,7 +50,7 @@ public class PhoneRepository implements FaunaRepository<PhoneRecord> {
                 Update(Ref(Collection(COLLECTION_NAME), idVal), Obj(DATA_VAL, recordVal)),
                 Create(Ref(Collection(COLLECTION_NAME), idVal), Obj(DATA_VAL, recordVal))));
 
-    return client.faunaClient().query(saveQuery).thenApply(value -> value.to(Void.class).get());
+    client.getClient().query(saveQuery).thenApply(value -> value.to(Void.class).get());
   }
 
   @Override
@@ -56,17 +60,17 @@ public class PhoneRepository implements FaunaRepository<PhoneRecord> {
     var findQuery = Select(Value(DATA_VAL), Get(Ref(Collection(COLLECTION_NAME), idVal)));
 
     return client
-        .faunaClient()
+        .getClient()
         .query(findQuery)
         .thenApply(value -> value.to(PhoneRecord.class).get());
   }
 
   @Override
-  public CompletableFuture<Void> remove(long id) {
+  public void remove(long id) {
     var idVal = Value(id);
 
     var deleteQuery = Select(Value(DATA_VAL), Delete(Ref(Collection(COLLECTION_NAME), idVal)));
 
-    return client.faunaClient().query(deleteQuery).thenApply(value -> value.to(Void.class).get());
+    client.getClient().query(deleteQuery).thenApply(value -> value.to(Void.class).get());
   }
 }

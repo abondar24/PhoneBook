@@ -3,4 +3,4 @@ micronaut:
     name: phonebook
 
 fauna:
-  secret: test-key
+  secret: fnAEeRP-m8AAx4ceFZsmztN_UwYBeyqc-xRq4uz0

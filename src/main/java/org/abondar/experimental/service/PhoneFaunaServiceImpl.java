@@ -34,7 +34,7 @@ public class PhoneFaunaServiceImpl implements PhoneFaunaService{
 
     @Override
     public void remove(long id) {
-        repository.remove(id).join();
-       
+        repository.remove(id);
+
     }
 }
