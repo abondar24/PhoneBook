@@ -5,7 +5,8 @@ import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import jakarta.inject.Inject;
 import org.abondar.experimental.dao.PhoneFaunaRepository;
 import org.abondar.experimental.model.db.PhoneRecord;
-import org.abondar.experimental.model.web.PhoneRequest;
+import org.abondar.experimental.model.web.PhoneCreateRequest;
+import org.abondar.experimental.model.web.PhoneUpdateRequest;
 import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.CompletableFuture;
@@ -32,15 +33,26 @@ public class PhoneFaunaServiceTest {
   }
 
   @Test
-  public void saveOrUpdateRecordTest() {
-    var req = new PhoneRequest("test", "9888");
+  public void saveRecordTest() {
+    var req = new PhoneCreateRequest("test", "9888");
 
     var idCf = CompletableFuture.completedFuture(1L);
-    CompletableFuture<Void> saveCf = CompletableFuture.completedFuture(null);
     when(repository.nextId()).thenReturn(idCf);
     doNothing().when(repository).saveOrUpdateRecord(any(PhoneRecord.class));
 
-    var res = phoneFaunaService.saveOrUpdateRecord(req);
+    var res = phoneFaunaService.save(req);
+    assertEquals(1L, res.id());
+    assertEquals(req.name(), res.name());
+    assertEquals(req.phoneNumber(), res.phoneNumber());
+  }
+
+  @Test
+  public void updateRecordTest() {
+    var req = new PhoneUpdateRequest(1L,"test", "9888");
+
+    doNothing().when(repository).saveOrUpdateRecord(any(PhoneRecord.class));
+
+    var res = phoneFaunaService.update(req);
     assertEquals(1L, res.id());
     assertEquals(req.name(), res.name());
     assertEquals(req.phoneNumber(), res.phoneNumber());

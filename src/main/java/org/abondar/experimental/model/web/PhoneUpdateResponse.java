@@ -1,10 +1,9 @@
 package org.abondar.experimental.model.web;
 
-
 import io.micronaut.core.annotation.Introspected;
 
-import java.util.Date;
+import java.time.Instant;
 
 @Introspected
-public record PhoneResponse(long id, Date createdAt) {
+public record PhoneUpdateResponse(Instant updatedAt) {
 }
