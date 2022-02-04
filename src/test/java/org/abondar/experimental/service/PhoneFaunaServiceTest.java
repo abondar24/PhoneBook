@@ -5,14 +5,14 @@ import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import jakarta.inject.Inject;
 import org.abondar.experimental.dao.PhoneFaunaRepository;
 import org.abondar.experimental.model.db.PhoneRecord;
-import org.abondar.experimental.model.web.PhoneCreateRequest;
-import org.abondar.experimental.model.web.PhoneUpdateRequest;
+import org.abondar.experimental.model.web.request.PhoneCreateRequest;
+import org.abondar.experimental.model.web.request.PhoneUpdateRequest;
 import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.CompletableFuture;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
@@ -48,7 +48,7 @@ public class PhoneFaunaServiceTest {
 
   @Test
   public void updateRecordTest() {
-    var req = new PhoneUpdateRequest(1L,"test", "9888");
+    var req = new PhoneUpdateRequest(1L, "test", "9888");
 
     doNothing().when(repository).saveOrUpdateRecord(any(PhoneRecord.class));
 
@@ -66,7 +66,7 @@ public class PhoneFaunaServiceTest {
     when(repository.find(rec.id())).thenReturn(resCF);
 
     var res = phoneFaunaService.find(rec.id());
-    assertNotNull(res);
+    assertTrue(res.isPresent());
   }
 
   @Test

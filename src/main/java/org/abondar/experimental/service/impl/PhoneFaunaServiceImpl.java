@@ -4,9 +4,11 @@ import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
 import org.abondar.experimental.dao.PhoneFaunaRepository;
 import org.abondar.experimental.model.db.PhoneRecord;
-import org.abondar.experimental.model.web.PhoneCreateRequest;
-import org.abondar.experimental.model.web.PhoneUpdateRequest;
+import org.abondar.experimental.model.web.request.PhoneCreateRequest;
+import org.abondar.experimental.model.web.request.PhoneUpdateRequest;
 import org.abondar.experimental.service.PhoneFaunaService;
+
+import java.util.Optional;
 
 @Singleton
 public class PhoneFaunaServiceImpl implements PhoneFaunaService {
@@ -31,8 +33,8 @@ public class PhoneFaunaServiceImpl implements PhoneFaunaService {
     }
 
     @Override
-    public PhoneRecord find(long id) {
-           return repository.find(id).join();
+    public Optional<PhoneRecord> find(long id) {
+           return Optional.of(repository.find(id).join());
 
     }
 

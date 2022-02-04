@@ -1,8 +1,10 @@
 package org.abondar.experimental.service;
 
 import org.abondar.experimental.model.db.PhoneRecord;
-import org.abondar.experimental.model.web.PhoneCreateRequest;
-import org.abondar.experimental.model.web.PhoneUpdateRequest;
+import org.abondar.experimental.model.web.request.PhoneCreateRequest;
+import org.abondar.experimental.model.web.request.PhoneUpdateRequest;
+
+import java.util.Optional;
 
 public interface PhoneFaunaService {
 
@@ -10,7 +12,7 @@ public interface PhoneFaunaService {
 
     PhoneRecord update(PhoneUpdateRequest request);
 
-    PhoneRecord find(long id);
+    Optional<PhoneRecord> find(long id);
 
     void  remove(long id);
 
