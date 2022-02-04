@@ -1,4 +1,4 @@
-package org.abondar.experimental.model.web;
+package org.abondar.experimental.model.web.request;
 
 import io.micronaut.core.annotation.Introspected;
 
