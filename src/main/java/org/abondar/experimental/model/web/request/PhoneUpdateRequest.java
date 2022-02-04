@@ -12,11 +12,9 @@ public record PhoneUpdateRequest(
         @NotBlank
         long id,
 
-        @NotNull
-        @NotBlank
+
         String name,
 
-        @NotNull
-        @NotBlank
+
         String phoneNumber
 ){}

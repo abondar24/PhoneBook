@@ -13,34 +13,30 @@ import java.util.Optional;
 @Singleton
 public class PhoneFaunaServiceImpl implements PhoneFaunaService {
 
-    @Inject
-    private PhoneFaunaRepository repository;
+  @Inject private PhoneFaunaRepository repository;
 
+  @Override
+  public PhoneRecord save(PhoneCreateRequest request) {
+    var id = repository.nextId().join();
+    var rec = new PhoneRecord(id, request.name(), request.phoneNumber());
+    repository.saveOrUpdateRecord(rec);
+    return rec;
+  }
 
-    @Override
-    public PhoneRecord save(PhoneCreateRequest request) {
-        var id = repository.nextId().join();
-        var rec = new PhoneRecord(id,request.name(),request.phoneNumber());
-        repository.saveOrUpdateRecord(rec);
-        return rec;
-    }
+  @Override
+  public PhoneRecord update(PhoneUpdateRequest request) {
+    var rec = new PhoneRecord(request.id(), request.name(), request.phoneNumber());
+    repository.saveOrUpdateRecord(rec);
+    return rec;
+  }
 
-    @Override
-    public PhoneRecord update(PhoneUpdateRequest request) {
-        var rec = new PhoneRecord(request.id(),request.name(),request.phoneNumber());
-        repository.saveOrUpdateRecord(rec);
-        return rec;
-    }
+  @Override
+  public Optional<PhoneRecord> find(long id) {
+    return Optional.ofNullable(repository.find(id).join());
+  }
 
-    @Override
-    public Optional<PhoneRecord> find(long id) {
-           return Optional.of(repository.find(id).join());
-
-    }
-
-    @Override
-    public void remove(long id) {
-        repository.remove(id);
-
-    }
+  @Override
+  public void remove(long id) {
+    repository.remove(id);
+  }
 }

@@ -1,7 +1,6 @@
 package org.abondar.experimental.service.impl;
 
 import io.micronaut.cache.annotation.CacheConfig;
-import io.micronaut.cache.annotation.CacheInvalidate;
 import io.micronaut.cache.annotation.CachePut;
 import io.micronaut.cache.annotation.Cacheable;
 import jakarta.inject.Singleton;
@@ -16,24 +15,23 @@ import java.util.Optional;
 @CacheConfig("phonebook")
 public class PhoneCacheServiceImpl implements PhoneCacheService {
 
-    Map<Long, PhoneRecord> phonebook = new HashMap<>();
+  Map<Long, PhoneRecord> phonebook = new HashMap<>();
 
+  @Override
+  @CachePut
+  public void save(PhoneRecord record) {
+    phonebook.put(record.id(), record);
+  }
 
-    @Override
-    @CachePut
-    public void save(PhoneRecord record) {
-        phonebook.put(record.id(),record);
-    }
+  @Override
+  @Cacheable(parameters = {"id"})
+  public Optional<PhoneRecord> find(long id) {
+    return Optional.ofNullable(phonebook.get(id));
+  }
 
-    @Override
-    @Cacheable(parameters = {"id"})
-    public Optional<PhoneRecord> find(long id) {
-        return Optional.of(phonebook.get(id));
-    }
-
-    @Override
-    @Cacheable(parameters = {"id"})
-    public void remove(long id) {
-      phonebook.remove(id);
-    }
+  @Override
+  @Cacheable(parameters = {"id"})
+  public void remove(long id) {
+    phonebook.remove(id);
+  }
 }
