@@ -5,5 +5,10 @@ micronaut:
     phonebook:
       charset: UTF-8
 
+endpoints:
+  caches:
+    enabled: true
+    # sensitive: false
+
 fauna:
   secret: '${FAUNA_KEY}'

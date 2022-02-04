@@ -1,6 +1,9 @@
 micronaut:
   server:
     port: 8010
+  caches:
+    phonebook:
+      charset: UTF-8
 
 fauna:
   secret: test-key

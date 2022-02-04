@@ -25,13 +25,13 @@ public class PhoneCacheServiceImpl implements PhoneCacheService {
     }
 
     @Override
-    @Cacheable
+    @Cacheable(parameters = {"id"})
     public PhoneRecord find(long id) {
         return phonebook.get(id);
     }
 
     @Override
-    @Cacheable
+    @Cacheable(parameters = {"id"})
     public void remove(long id) {
       phonebook.remove(id);
     }
