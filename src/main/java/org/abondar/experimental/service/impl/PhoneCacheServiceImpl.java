@@ -10,6 +10,7 @@ import org.abondar.experimental.service.PhoneCacheService;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 @Singleton
 @CacheConfig("phonebook")
@@ -26,8 +27,8 @@ public class PhoneCacheServiceImpl implements PhoneCacheService {
 
     @Override
     @Cacheable(parameters = {"id"})
-    public PhoneRecord find(long id) {
-        return phonebook.get(id);
+    public Optional<PhoneRecord> find(long id) {
+        return Optional.of(phonebook.get(id));
     }
 
     @Override

@@ -23,7 +23,7 @@ public class PhoneCacheServiceTest {
         cacheService.save(rec);
 
         var res = cacheService.find(rec.id());
-        assertEquals(rec.id(),res.id());
+        assertEquals(rec.id(),res.get().id());
     }
 
 
