@@ -1,4 +1,4 @@
-package org.abondar.experimental.service;
+package org.abondar.experimental.service.impl;
 
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
@@ -6,9 +6,10 @@ import org.abondar.experimental.dao.PhoneFaunaRepository;
 import org.abondar.experimental.model.db.PhoneRecord;
 import org.abondar.experimental.model.web.PhoneCreateRequest;
 import org.abondar.experimental.model.web.PhoneUpdateRequest;
+import org.abondar.experimental.service.PhoneFaunaService;
 
 @Singleton
-public class PhoneFaunaServiceImpl implements PhoneFaunaService{
+public class PhoneFaunaServiceImpl implements PhoneFaunaService {
 
     @Inject
     private PhoneFaunaRepository repository;

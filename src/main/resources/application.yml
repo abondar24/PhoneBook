@@ -1,6 +1,9 @@
 micronaut:
   application:
     name: phonebook
+  caches:
+    phonebook:
+      charset: UTF-8
 
 fauna:
-  secret: test
+  secret: '${FAUNA_KEY}'

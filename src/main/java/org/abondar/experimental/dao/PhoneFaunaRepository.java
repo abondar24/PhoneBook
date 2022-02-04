@@ -28,8 +28,6 @@ public class PhoneFaunaRepository implements FaunaRepository<PhoneRecord> {
 
   @Inject private FaunaClientConfig client;
 
-  @Value("${fauna.secret}")
-  private String faunaKey;
 
   @Override
   public CompletableFuture<Long> nextId() {

@@ -17,6 +17,7 @@ dependencies {
     implementation("io.micronaut:micronaut-inject")
     implementation("jakarta.annotation:jakarta.annotation-api")
     implementation("io.micronaut:micronaut-validation")
+    implementation("io.micronaut.cache:micronaut-cache-caffeine")
     implementation("com.faunadb:faunadb-java:$faunaVersion")
 
     runtimeOnly("ch.qos.logback:logback-classic")
