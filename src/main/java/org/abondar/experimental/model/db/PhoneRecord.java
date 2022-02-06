@@ -14,7 +14,7 @@ public record PhoneRecord(
 
     @FaunaConstructor
     public PhoneRecord(@FaunaField("id") long id, @FaunaField("name")
-            String name, @FaunaField("number")
+            String name, @FaunaField("phoneNumber")
                                String phoneNumber) {
         this.id = id;
         this.name = name;
