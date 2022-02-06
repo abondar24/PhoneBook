@@ -33,3 +33,9 @@
 ### Note
 
 - Native image building requires graalvm to be built and installed
+
+
+## API
+
+- YAML API spec: http://localhost:8080/swagger/phonebook-v1.0.yml
+- Swagger API doc: http://localhost:8080/doc
