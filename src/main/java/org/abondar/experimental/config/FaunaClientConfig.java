@@ -1,7 +1,6 @@
 package org.abondar.experimental.config;
 
 import com.faunadb.client.FaunaClient;
-import io.micronaut.context.annotation.Context;
 import io.micronaut.context.annotation.Value;
 import jakarta.annotation.PostConstruct;
 import jakarta.inject.Singleton;
@@ -9,7 +8,6 @@ import jakarta.inject.Singleton;
 import java.net.MalformedURLException;
 
 @Singleton
-@Context
 public class FaunaClientConfig {
 
   @Value("${fauna.secret}")
