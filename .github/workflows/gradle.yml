@@ -2,11 +2,14 @@ name: Java CI with Gradle
 
 on:
   push:
-    branches: [ $default-branch ]
+    branches:
+      - master
   pull_request:
-    branches: [ $default-branch ]
+    branches:
+      - master
   workflow_dispatch:
-    branches: [ $default-branch ]
+    branches:
+      - master
 
 jobs:
   build:
@@ -30,8 +33,10 @@ jobs:
           arguments: test
         env:
           HD_FAUNA_KEY: ${{secrets.FAUNA_KEY}}
-      - name: Publish Unit Test Results
-        uses: EnricoMi/publish-unit-test-result-action@v1
-        if: always()
+      - name: Test Report
+        uses: dorny/test-reporter@v1
+        if: success()
         with:
-          files: build/reports/tests/test/index.html
+          name: Phonebook tests            # Name of the check run which will be created
+          path: build/reports/tests/test/index.xml    # Path to test results
+          reporter: jest-junit
