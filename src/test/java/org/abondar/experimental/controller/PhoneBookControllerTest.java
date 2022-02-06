@@ -75,6 +75,18 @@ public class PhoneBookControllerTest {
   }
 
   @Test
+  public void saveMissingFieldTest() {
+    var req = new PhoneCreateRequest("test", "");
+    assertThrows(
+            HttpClientResponseException.class,
+            () -> client
+                    .toBlocking()
+                    .exchange(HttpRequest.PUT("/v1/phonebook",req), PhoneCreateResponse.class));
+
+
+  }
+
+  @Test
   public void updateTest() {
     var req = new PhoneUpdateRequest(1L, "test", "111");
     var rec = new PhoneRecord(1L, req.name(), req.phoneNumber());
@@ -115,6 +127,18 @@ public class PhoneBookControllerTest {
   }
 
   @Test
+  public void updateMissingIdTest() {
+
+    assertThrows(
+            HttpClientResponseException.class,
+            () -> client
+                    .toBlocking()
+                    .exchange(HttpRequest.PUT("/v1/phonebook",null), PhoneUpdateResponse.class));
+
+
+  }
+
+  @Test
   public void findTest() {
     var rec = new PhoneRecord(1L, "test", "1111");
 
@@ -136,9 +160,7 @@ public class PhoneBookControllerTest {
 
     assertThrows(
         HttpClientResponseException.class,
-        () -> {
-          client.toBlocking().exchange(HttpRequest.GET("/v1/phonebook/1"), PhoneResponse.class);
-        });
+        () -> client.toBlocking().exchange(HttpRequest.GET("/v1/phonebook/1"), PhoneResponse.class));
   }
 
   @Test

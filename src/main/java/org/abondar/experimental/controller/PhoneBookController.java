@@ -19,20 +19,22 @@ import org.abondar.experimental.model.web.response.PhoneResponse;
 import org.abondar.experimental.model.web.response.PhoneUpdateResponse;
 import org.abondar.experimental.service.PhoneService;
 
+import javax.validation.Valid;
+
 @Controller("/v1/phonebook")
 public class PhoneBookController {
 
   @Inject private PhoneService phoneService;
 
   @Post(processes = MediaType.APPLICATION_JSON, produces = MediaType.APPLICATION_JSON)
-  public HttpResponse<PhoneCreateResponse> create(@Body PhoneCreateRequest request) {
+  public HttpResponse<PhoneCreateResponse> create(@Body @Valid PhoneCreateRequest request) {
     var response = phoneService.save(request);
 
     return HttpResponse.created(response);
   }
 
   @Put(processes = MediaType.APPLICATION_JSON, produces = MediaType.APPLICATION_JSON)
-  public HttpResponse<PhoneUpdateResponse> update(@Body PhoneUpdateRequest request) {
+  public HttpResponse<PhoneUpdateResponse> update(@Body @Valid PhoneUpdateRequest request) {
     var response = phoneService.update(request);
 
     return HttpResponse.ok(response);
