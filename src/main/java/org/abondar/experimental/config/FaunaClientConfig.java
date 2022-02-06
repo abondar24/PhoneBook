@@ -5,18 +5,24 @@ import io.micronaut.context.annotation.Value;
 import jakarta.annotation.PostConstruct;
 import jakarta.inject.Singleton;
 
+import java.net.MalformedURLException;
+
 @Singleton
 public class FaunaClientConfig {
 
   @Value("${fauna.secret}")
   private String faunaKey;
 
+  @Value("${fauna.endpoint}")
+  private String faunaEndpoint;
+
   private FaunaClient client;
 
   @PostConstruct
-  public void initClient() {
+  public void initClient() throws MalformedURLException {
 
    this.client= FaunaClient.builder()
+           .withEndpoint(faunaEndpoint)
             .withSecret(faunaKey).build();
   }
 
