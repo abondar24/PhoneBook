@@ -12,4 +12,6 @@ public interface PhoneCacheService {
     Optional<PhoneRecord> find(long id);
 
     void remove(long id);
+
+    void clearCache();
 }

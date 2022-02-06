@@ -8,6 +8,9 @@ import org.abondar.experimental.model.db.PhoneRecord;
 import org.abondar.experimental.model.web.request.PhoneCreateRequest;
 import org.abondar.experimental.model.web.request.PhoneUpdateRequest;
 import org.abondar.experimental.service.impl.PhoneFaunaServiceImpl;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
@@ -35,6 +38,11 @@ public class PhoneServiceTest {
   @MockBean(PhoneFaunaServiceImpl.class)
   PhoneFaunaService phoneFaunaService() {
     return mock(PhoneFaunaService.class);
+  }
+
+  @BeforeEach
+  public void clearCache(){
+    cacheService.clearCache();
   }
 
   @Test
@@ -88,7 +96,6 @@ public class PhoneServiceTest {
 
   @Test
   public void notFoundTest() {
-    cacheService.remove(1L);
     when(phoneFaunaService.find(1L)).thenReturn(Optional.empty());
     assertThrows(PhoneBookException.class, () -> phoneService.find(1L));
   }

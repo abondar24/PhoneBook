@@ -1,6 +1,7 @@
 package org.abondar.experimental.service.impl;
 
 import io.micronaut.cache.annotation.CacheConfig;
+import io.micronaut.cache.annotation.CacheInvalidate;
 import io.micronaut.cache.annotation.CachePut;
 import io.micronaut.cache.annotation.Cacheable;
 import jakarta.inject.Singleton;
@@ -33,5 +34,11 @@ public class PhoneCacheServiceImpl implements PhoneCacheService {
   @Cacheable(parameters = {"id"})
   public void remove(long id) {
     phonebook.remove(id);
+  }
+
+  @Override
+  @CacheInvalidate(all = true)
+  public void clearCache() {
+    phonebook.clear();
   }
 }

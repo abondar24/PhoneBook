@@ -7,36 +7,34 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @MicronautTest
 public class PhoneCacheServiceTest {
 
-    @Inject
-    private PhoneCacheService cacheService;
+  @Inject private PhoneCacheService cacheService;
 
-    @Test
-    @Timeout(2)
-    public void saveAndFindTest(){
-        var rec = new PhoneRecord(1L,"test","test");
+  @Test
+  @Timeout(2)
+  public void saveAndFindTest() {
+    var rec = new PhoneRecord(1L, "test", "test");
 
-        cacheService.save(rec);
+    cacheService.save(rec);
 
-        var res = cacheService.find(rec.id());
-        assertEquals(rec.id(),res.get().id());
-    }
+    var res = cacheService.find(rec.id());
+    assertEquals(rec.id(), res.get().id());
+  }
 
+  @Test
+  @Timeout(3)
+  public void removeTest() {
+    var rec = new PhoneRecord(1L, "test", "test");
 
-    @Test
-    @Timeout(3)
-    public void removeTest(){
-        var rec = new PhoneRecord(1L,"test","test");
+    cacheService.save(rec);
 
-        cacheService.save(rec);
+    cacheService.remove(rec.id());
 
-        cacheService.remove(rec.id());
-
-        var res = cacheService.find(rec.id());
-        assertNull(res);
-    }
+    var res = cacheService.find(rec.id());
+    assertTrue(res.isEmpty());
+  }
 }

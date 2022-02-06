@@ -15,8 +15,10 @@ import org.abondar.experimental.model.web.request.PhoneUpdateRequest;
 import org.abondar.experimental.model.web.response.PhoneCreateResponse;
 import org.abondar.experimental.model.web.response.PhoneResponse;
 import org.abondar.experimental.model.web.response.PhoneUpdateResponse;
+import org.abondar.experimental.service.PhoneCacheService;
 import org.abondar.experimental.service.PhoneFaunaService;
 import org.abondar.experimental.service.impl.PhoneFaunaServiceImpl;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
@@ -38,9 +40,17 @@ public class PhoneBookControllerTest {
 
   @Inject private PhoneFaunaService phoneFaunaService;
 
+  @Inject
+  private PhoneCacheService cacheService;
+
   @MockBean(PhoneFaunaServiceImpl.class)
   PhoneFaunaService phoneFaunaService() {
     return mock(PhoneFaunaService.class);
+  }
+
+  @BeforeEach
+  public void clearCache(){
+    cacheService.clearCache();
   }
 
   @Test
