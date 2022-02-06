@@ -4,7 +4,7 @@ import java.util.concurrent.CompletableFuture;
 
 public interface FaunaRepository<T> {
 
-  CompletableFuture<Long> nextId();
+  CompletableFuture<String> nextId();
 
   void saveOrUpdateRecord(T record);
 

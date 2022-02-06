@@ -36,7 +36,7 @@ public class PhoneFaunaServiceTest {
   public void saveRecordTest() {
     var req = new PhoneCreateRequest("test", "9888");
 
-    var idCf = CompletableFuture.completedFuture(1L);
+    var idCf = CompletableFuture.completedFuture("1");
     when(repository.nextId()).thenReturn(idCf);
     doNothing().when(repository).saveOrUpdateRecord(any(PhoneRecord.class));
 

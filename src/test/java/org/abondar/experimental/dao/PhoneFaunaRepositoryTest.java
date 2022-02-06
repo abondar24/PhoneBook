@@ -13,19 +13,10 @@ import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.CompletableFuture;
 
-import static com.faunadb.client.query.Language.Collection;
-import static com.faunadb.client.query.Language.Delete;
-import static com.faunadb.client.query.Language.Ref;
-import static com.faunadb.client.query.Language.Select;
-import static org.abondar.experimental.dao.DaoUtil.COLLECTION_NAME;
-import static org.abondar.experimental.dao.DaoUtil.DATA_VAL;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @MicronautTest
@@ -47,14 +38,14 @@ public class PhoneFaunaRepositoryTest {
 
   @Test
   public void nextIdTest() {
-    var idRes = Value.from(0L);
+    var idRes = Value.from("0");
     CompletableFuture<Value> cf = CompletableFuture.completedFuture(idRes.get());
 
     when(config.getClient()).thenReturn(client);
     when(client.query(any(Expr.class))).thenReturn(cf);
 
     var res = repository.nextId().join();
-    assertEquals(0L, res);
+    assertEquals(0L, Long.parseLong(res));
   }
 
   @Test
@@ -69,6 +60,4 @@ public class PhoneFaunaRepositoryTest {
     var res = repository.find(rec.id());
     assertNotNull(res);
   }
-
-
 }

@@ -18,7 +18,7 @@ public class PhoneFaunaServiceImpl implements PhoneFaunaService {
   @Override
   public PhoneRecord save(PhoneCreateRequest request) {
     var id = repository.nextId().join();
-    var rec = new PhoneRecord(id, request.name(), request.phoneNumber());
+    var rec = new PhoneRecord(Long.parseLong(id), request.name(), request.phoneNumber());
     repository.saveOrUpdateRecord(rec);
     return rec;
   }

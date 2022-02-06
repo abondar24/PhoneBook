@@ -1,6 +1,5 @@
 package org.abondar.experimental.dao;
 
-import io.micronaut.context.annotation.Value;
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
 import org.abondar.experimental.config.FaunaClientConfig;
@@ -28,11 +27,10 @@ public class PhoneFaunaRepository implements FaunaRepository<PhoneRecord> {
 
   @Inject private FaunaClientConfig client;
 
-
   @Override
-  public CompletableFuture<Long> nextId() {
+  public CompletableFuture<String> nextId() {
 
-    return client.getClient().query(NewId()).thenApply(value -> value.to(Long.class).get());
+    return client.getClient().query(NewId()).thenApply(value -> value.to(String.class).get());
   }
 
   @Override

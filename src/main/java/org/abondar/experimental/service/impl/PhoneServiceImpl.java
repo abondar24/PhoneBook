@@ -2,6 +2,7 @@ package org.abondar.experimental.service.impl;
 
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
+import org.abondar.experimental.exception.Messages;
 import org.abondar.experimental.exception.PhoneBookException;
 import org.abondar.experimental.model.web.request.PhoneCreateRequest;
 import org.abondar.experimental.model.web.request.PhoneUpdateRequest;
@@ -48,7 +49,7 @@ public class PhoneServiceImpl implements PhoneService {
                     .find(id)
                     .orElseThrow(
                         () -> {
-                          throw new PhoneBookException("Phone Record not found by provided id");
+                          throw new PhoneBookException(Messages.NOT_FOUND);
                         }));
 
     return new PhoneResponse(res.name(), res.phoneNumber());
