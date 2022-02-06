@@ -16,8 +16,11 @@ micronaut:
 endpoints:
   caches:
     enabled: true
-    # sensitive: false
+    sensitive: false
+  env:
+    enabled: true
+    sensitive: false
 
 fauna:
-  secret: fnAEevmFvJAAx59IJcsQgFlMxWJ3_GVh2HPFECIF #'${FAUNA_KEY}'
+  secret: fnAEev02RTAAxyGHf1NyywM51SNwVz9oZlh8ZnnA #'${FAUNA_KEY}'
   endpoint: https://db.eu.fauna.com:443
