@@ -39,4 +39,4 @@ jobs:
         with:
           name: Phonebook tests            # Name of the check run which will be created
           path: reports/tests/test/index.xml    # Path to test results
-          reporter: jest-junit
+          reporter: junit5
