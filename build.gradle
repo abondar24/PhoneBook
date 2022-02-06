@@ -59,10 +59,3 @@ graalvmNative {
         }
     }
 }
-
-tasks.withType(JavaCompile) {
-    options.fork = true
-    options.forkOptions.jvmArgs << '-Dmicronaut.openapi.property.naming.strategy=SNAKE_CASE'
-
-
-}
