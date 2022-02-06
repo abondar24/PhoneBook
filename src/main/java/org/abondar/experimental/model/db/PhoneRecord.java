@@ -2,7 +2,9 @@ package org.abondar.experimental.model.db;
 
 import com.faunadb.client.types.FaunaConstructor;
 import com.faunadb.client.types.FaunaField;
+import io.micronaut.core.annotation.Introspected;
 
+@Introspected
 public record PhoneRecord(
         long id,
 

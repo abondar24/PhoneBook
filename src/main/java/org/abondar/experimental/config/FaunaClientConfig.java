@@ -11,10 +11,10 @@ import java.net.MalformedURLException;
 public class FaunaClientConfig {
 
   @Value("${fauna.secret}")
-  private String faunaSecret;
+  protected String faunaSecret;
 
   @Value("${fauna.endpoint}")
-  private String faunaEndpoint;
+  protected String faunaEndpoint;
 
   private FaunaClient client;
 

@@ -7,7 +7,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Introspected
-
 public record PhoneCreateRequest(
         @NotNull
                 @NotBlank
