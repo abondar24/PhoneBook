@@ -8,14 +8,14 @@ import io.micronaut.http.HttpStatus;
 import io.micronaut.http.annotation.Produces;
 import io.micronaut.http.server.exceptions.ExceptionHandler;
 import jakarta.inject.Singleton;
-import org.abondar.experimental.exception.PhoneBookException;
 
 @Produces
 @Singleton
 @Requires(classes = {UnauthorizedException.class, ExceptionHandler.class})
-public class UnauthorizedExceptionHandler  implements ExceptionHandler<UnauthorizedException, HttpResponse<?>>{
-    @Override
-    public HttpResponse<?> handle(HttpRequest request, UnauthorizedException exception) {
-        return HttpResponse.status(HttpStatus.BAD_GATEWAY).body("Fauna server unauthorized");
-    }
+public class UnauthorizedExceptionHandler
+    implements ExceptionHandler<UnauthorizedException, HttpResponse<?>> {
+  @Override
+  public HttpResponse<?> handle(HttpRequest request, UnauthorizedException exception) {
+    return HttpResponse.status(HttpStatus.BAD_GATEWAY).body("Fauna server unauthorized");
+  }
 }
