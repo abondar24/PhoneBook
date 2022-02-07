@@ -1,6 +1,5 @@
-package org.abondar.experimental.config;
+package org.abondar.experimental.client;
 
-import com.faunadb.client.FaunaClient;
 import io.micronaut.context.annotation.Requires;
 import io.micronaut.context.annotation.Value;
 import jakarta.annotation.PostConstruct;
@@ -10,7 +9,7 @@ import java.net.MalformedURLException;
 
 @Singleton
 @Requires(property = "fauna.graphql.enabled" , value = "false")
-public class FaunaClientConfig {
+public class FaunaDatabaseClient {
 
   @Value("${fauna.secret}")
   protected String faunaSecret;
@@ -18,15 +17,15 @@ public class FaunaClientConfig {
   @Value("${fauna.endpoint}")
   protected String faunaEndpoint;
 
-  private FaunaClient client;
+  private com.faunadb.client.FaunaClient client;
 
   @PostConstruct
   public void initClient() throws MalformedURLException {
 
-    this.client = FaunaClient.builder().withEndpoint(faunaEndpoint).withSecret(faunaSecret).build();
+    this.client = com.faunadb.client.FaunaClient.builder().withEndpoint(faunaEndpoint).withSecret(faunaSecret).build();
   }
 
-  public FaunaClient getClient() {
+  public com.faunadb.client.FaunaClient getClient() {
     return client;
   }
 }

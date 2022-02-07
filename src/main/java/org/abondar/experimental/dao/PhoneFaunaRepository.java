@@ -3,7 +3,7 @@ package org.abondar.experimental.dao;
 import io.micronaut.context.annotation.Requires;
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
-import org.abondar.experimental.config.FaunaClientConfig;
+import org.abondar.experimental.client.FaunaDatabaseClient;
 import org.abondar.experimental.model.db.PhoneRecord;
 
 import java.util.concurrent.CompletableFuture;
@@ -27,7 +27,7 @@ import static org.abondar.experimental.dao.DaoUtil.DATA_VAL;
 @Requires(property = "fauna.graphql.enabled" , value = "false")
 public class PhoneFaunaRepository implements FaunaRepository<PhoneRecord> {
 
-  @Inject private FaunaClientConfig client;
+  @Inject private FaunaDatabaseClient client;
 
   @Override
   public CompletableFuture<String> nextId() {

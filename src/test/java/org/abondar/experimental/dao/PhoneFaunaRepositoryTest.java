@@ -1,12 +1,11 @@
 package org.abondar.experimental.dao;
 
-import com.faunadb.client.FaunaClient;
 import com.faunadb.client.query.Expr;
 import com.faunadb.client.types.Value;
 import io.micronaut.test.annotation.MockBean;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import jakarta.inject.Inject;
-import org.abondar.experimental.config.FaunaClientConfig;
+import org.abondar.experimental.client.FaunaDatabaseClient;
 import org.abondar.experimental.model.db.PhoneRecord;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -22,18 +21,18 @@ import static org.mockito.Mockito.when;
 @MicronautTest
 public class PhoneFaunaRepositoryTest {
 
-  private static FaunaClient client;
+  private static com.faunadb.client.FaunaClient client;
   @Inject private PhoneFaunaRepository repository;
-  @Inject private FaunaClientConfig config;
+  @Inject private FaunaDatabaseClient config;
 
   @BeforeAll
   public static void init() {
-    client = mock(FaunaClient.class);
+    client = mock(com.faunadb.client.FaunaClient.class);
   }
 
-  @MockBean(FaunaClientConfig.class)
-  public FaunaClientConfig config() {
-    return mock(FaunaClientConfig.class);
+  @MockBean(FaunaDatabaseClient.class)
+  public FaunaDatabaseClient config() {
+    return mock(FaunaDatabaseClient.class);
   }
 
   @Test
