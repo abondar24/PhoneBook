@@ -1,5 +1,6 @@
 package org.abondar.experimental.dao;
 
+import io.micronaut.context.annotation.Requires;
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
 import org.abondar.experimental.config.FaunaClientConfig;
@@ -23,6 +24,7 @@ import static org.abondar.experimental.dao.DaoUtil.COLLECTION_NAME;
 import static org.abondar.experimental.dao.DaoUtil.DATA_VAL;
 
 @Singleton
+@Requires(property = "fauna.graphql.enabled" , value = "false")
 public class PhoneFaunaRepository implements FaunaRepository<PhoneRecord> {
 
   @Inject private FaunaClientConfig client;
@@ -64,7 +66,6 @@ public class PhoneFaunaRepository implements FaunaRepository<PhoneRecord> {
   @Override
   public void remove(long id) {
     var idVal = Value(id);
-
     var deleteQuery = Select(Value(DATA_VAL), Delete(Ref(Collection(COLLECTION_NAME), idVal)));
 
     client.getClient().query(deleteQuery).thenApply(value -> value.to(Void.class).get());

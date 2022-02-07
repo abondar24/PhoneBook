@@ -1,6 +1,7 @@
 package org.abondar.experimental.config;
 
 import com.faunadb.client.FaunaClient;
+import io.micronaut.context.annotation.Requires;
 import io.micronaut.context.annotation.Value;
 import jakarta.annotation.PostConstruct;
 import jakarta.inject.Singleton;
@@ -8,6 +9,7 @@ import jakarta.inject.Singleton;
 import java.net.MalformedURLException;
 
 @Singleton
+@Requires(property = "fauna.graphql.enabled" , value = "false")
 public class FaunaClientConfig {
 
   @Value("${fauna.secret}")

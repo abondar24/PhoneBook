@@ -1,5 +1,7 @@
 package org.abondar.experimental.service.impl;
 
+import io.micronaut.context.annotation.Requires;
+import io.micronaut.context.annotation.Value;
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
 import org.abondar.experimental.dao.PhoneFaunaRepository;
@@ -11,6 +13,7 @@ import org.abondar.experimental.service.PhoneFaunaService;
 import java.util.Optional;
 
 @Singleton
+@Requires(property = "fauna.graphql.enabled" , value = "false")
 public class PhoneFaunaServiceImpl implements PhoneFaunaService {
 
   @Inject private PhoneFaunaRepository repository;

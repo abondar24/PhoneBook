@@ -7,6 +7,8 @@ micronaut:
 
 fauna:
   secret: test-key
+  graphql:
+    enabled: false
 
 mockito:
   test:
