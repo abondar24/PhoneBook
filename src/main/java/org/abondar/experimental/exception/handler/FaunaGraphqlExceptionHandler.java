@@ -16,6 +16,6 @@ public class FaunaGraphqlExceptionHandler
     implements ExceptionHandler<FaunaGraphqlException, HttpResponse<?>> {
   @Override
   public HttpResponse<?> handle(HttpRequest request, FaunaGraphqlException exception) {
-    return HttpResponse.status(HttpStatus.FORBIDDEN).body(exception.getMessage());
+    return HttpResponse.status(HttpStatus.BAD_GATEWAY).body(exception.getMessage());
   }
 }

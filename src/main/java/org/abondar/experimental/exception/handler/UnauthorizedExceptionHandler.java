@@ -8,6 +8,7 @@ import io.micronaut.http.HttpStatus;
 import io.micronaut.http.annotation.Produces;
 import io.micronaut.http.server.exceptions.ExceptionHandler;
 import jakarta.inject.Singleton;
+import org.abondar.experimental.exception.Messages;
 
 @Produces
 @Singleton
@@ -16,6 +17,6 @@ public class UnauthorizedExceptionHandler
     implements ExceptionHandler<UnauthorizedException, HttpResponse<?>> {
   @Override
   public HttpResponse<?> handle(HttpRequest request, UnauthorizedException exception) {
-    return HttpResponse.status(HttpStatus.BAD_GATEWAY).body("Fauna server unauthorized");
+    return HttpResponse.status(HttpStatus.UNAUTHORIZED).body(Messages.FAUNA_UNAUTHORIZED);
   }
 }
