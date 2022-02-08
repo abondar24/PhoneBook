@@ -23,7 +23,7 @@ public class PhoneFaunaRepositoryTest {
 
   private static com.faunadb.client.FaunaClient client;
   @Inject private PhoneFaunaRepository repository;
-  @Inject private FaunaDatabaseClient config;
+  @Inject private FaunaDatabaseClient dbClient;
 
   @BeforeAll
   public static void init() {
@@ -40,7 +40,7 @@ public class PhoneFaunaRepositoryTest {
     var idRes = Value.from("0");
     CompletableFuture<Value> cf = CompletableFuture.completedFuture(idRes.get());
 
-    when(config.getClient()).thenReturn(client);
+    when(dbClient.getClient()).thenReturn(client);
     when(client.query(any(Expr.class))).thenReturn(cf);
 
     var res = repository.nextId().join();
@@ -53,7 +53,7 @@ public class PhoneFaunaRepositoryTest {
     var recVal = Value.from(rec);
     CompletableFuture<Value> cf = CompletableFuture.completedFuture(recVal.get());
 
-    when(config.getClient()).thenReturn(client);
+    when(dbClient.getClient()).thenReturn(client);
     when(client.query(any(Expr.class))).thenReturn(cf);
 
     var res = repository.find(rec.id());

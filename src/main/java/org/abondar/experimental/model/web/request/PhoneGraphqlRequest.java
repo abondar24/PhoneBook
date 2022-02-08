@@ -8,7 +8,8 @@ public class PhoneGraphqlRequest {
   public static final String updateRequest =
       "{\"query\":\"mutation { updateContact(id:\\\"%s\\\",data:{name:\\\"%s\\\"  phoneNumber:\\\"%s\\\"}){name phoneNumber}}\",\"variables\":{}}";
 
-  public static final String findRequest = "{\"query\":\"query {findContactByID(id: \\\"%s\\\") {_id}}\",\"variables\":{}}";
+  public static final String findRequest =
+      "{\"query\":\"query {findContactByID(id: \\\"%s\\\") {name phoneNumber}}\",\"variables\":{}}";
   public static final String deleteRequest =
       "{\"query\":\"mutation { deleteContact(id:\\\"%s\\\"){_id}}\",\"variables\":{}}";
 
