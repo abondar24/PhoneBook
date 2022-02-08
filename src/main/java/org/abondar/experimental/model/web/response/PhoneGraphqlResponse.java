@@ -1,5 +1,7 @@
 package org.abondar.experimental.model.web.response;
 
+import com.fasterxml.jackson.annotation.JsonClassDescription;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.micronaut.core.annotation.Introspected;
 import org.abondar.experimental.model.web.response.graphql.GraphqlData;
 
@@ -39,8 +41,10 @@ import org.abondar.experimental.model.web.response.graphql.GraphqlData;
 //        }
 //        }
 @Introspected
-public record PhoneGraphqlResponse<T>(
+@JsonClassDescription
+public record PhoneGraphqlResponse(
 
-        GraphqlData<T> data
+        @JsonProperty("data")
+        GraphqlData data
 ){
 }
