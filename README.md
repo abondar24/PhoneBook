@@ -17,23 +17,33 @@ Yet another dummy phone book application based on Micronaut framework and graphq
 ```
 
 - Build docker image with graalvm
+
 ```
 ./gradlew dockerBuildNative
 ```
 
 ### Run
-- Run regular jar 
+
+- Run regular jar
+
 ```
- java -jar build/libs/phonebook-0.1-all.jar
+ java -jar build/libs/phonebook-0.1-all.jar -Dmicronaut.environments=<env>
 ```
-- Run via gradlew 
+
+Possible environments to run: dev, native.
+
+- Run via gradlew
+
 ```
 ./gradlew run
 ```
-- Run native image 
+
+- Run native image
+
 ```
-./build/native/nativeCompile/phonebook 
+./build/native/nativeCompile/phonebook -Dmicronaut.environments=native
 ```
+
 - Run docker container
 ```
 docker run -d  --name <some-name> -p 8080:8080 phonebook
@@ -42,7 +52,8 @@ docker run -d  --name <some-name> -p 8080:8080 phonebook
 ### Note
 
 - Native image building requires graalvm to be built and installed
-- Interaction with Fauna is possible in two ways: via client and graphql. Default one is via client, to enable graphql mode set property fauna.graphql.enabled: true
+- Interaction with Fauna is possible in two ways: via client and graphql. Default one is via client, to use graphql run
+  with -Dmicronaut.environments=native
 - Fauna connection via client is not possible in native image or docker.
 
 ## API

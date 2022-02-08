@@ -1,0 +1,7 @@
+endpoints:
+  caches:
+    enabled: true
+    sensitive: false
+  env:
+    enabled: true
+    sensitive: false

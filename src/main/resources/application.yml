@@ -13,17 +13,9 @@ micronaut:
         paths: classpath:META-INF/swagger/views/swagger-ui
         mapping: /doc/**
 
-#endpoints:
-#  caches:
-#    enabled: true
-#    sensitive: false
-#  env:
-#    enabled: true
-#    sensitive: false
-
 fauna:
   secret: '${FAUNA_KEY}'
   endpoint: https://db.eu.fauna.com:443
   graphql:
     endpoint: https://graphql.eu.fauna.com/graphql
-    enabled: true
+    enabled: false

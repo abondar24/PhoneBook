@@ -1,0 +1,3 @@
+fauna:
+  graphql:
+    enabled: true
