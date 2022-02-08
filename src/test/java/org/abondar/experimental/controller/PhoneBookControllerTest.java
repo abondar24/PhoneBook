@@ -106,25 +106,6 @@ public class PhoneBookControllerTest {
     assertNotNull(body.updatedAt());
   }
 
-  @Test
-  public void updatePartialTest() {
-    var req = new PhoneUpdateRequest(1L, null, "111");
-    var rec = new PhoneRecord(1L, req.name(), req.phoneNumber());
-
-    when(phoneFaunaService.update(req)).thenReturn(rec);
-
-    HttpResponse<PhoneUpdateResponse> resp =
-        client
-            .toBlocking()
-            .exchange(HttpRequest.PUT("/v1/phonebook", req), PhoneUpdateResponse.class);
-
-    assertEquals(200, resp.code());
-
-    var body = resp.body();
-
-    assertNotNull(body);
-    assertNotNull(body.updatedAt());
-  }
 
   @Test
   public void updateMissingIdTest() {
