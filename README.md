@@ -49,14 +49,6 @@ Possible environments to run: dev, native.
 docker run -d  --name <some-name> -p 8080:8080 -e FAUNA_KEY=$FAUNA_KEY phonebook
 ```
 
-### Note
-
-- Native image building requires graalvm to be built and installed
-- Interaction with Fauna is possible in two ways: via client and graphql. Default one is via client, to use graphql run
-  with -Dmicronaut.environments=native
-- Fauna connection via client is not possible in native image or docker.
-- For local usage set fauna API Key in environment variable FAUNA_KEY
-
 ## API
 
 - YAML API spec: http://localhost:8080/swagger/phonebook-v1.0.yml
@@ -65,3 +57,13 @@ docker run -d  --name <some-name> -p 8080:8080 -e FAUNA_KEY=$FAUNA_KEY phonebook
 ## Heroku access
 
 - app deployed on heroku can be accessed via https://phone-book-fauna.herokuapp.com/
+- app deployed on heroku in docker container can be accessed via https://phone-book-docker.herokuapp.com/
+
+### Note
+
+- Native image building requires graalvm to be built and installed
+- Interaction with Fauna is possible in two ways: via client and graphql. Default one is via client, to use graphql run
+  with -Dmicronaut.environments=native
+- Fauna connection via client is not possible in native image or docker.
+- For local usage set fauna API Key in environment variable FAUNA_KEY
+- Docker deployment on heroku requires adding fauna key manually

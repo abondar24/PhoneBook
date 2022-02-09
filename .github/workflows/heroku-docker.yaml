@@ -29,7 +29,4 @@ jobs:
           dockerfile_directory: build/docker/native-main
           dockerfile_name: DockerfileNative
 
-        env:
-          HD_FAUNA_KEY: ${{secrets.FAUNA_KEY}}
-          HD_PORT: 8080
 
