@@ -1,4 +1,4 @@
-name: Dcoker container  Heroku deployment
+name: Docker container  Heroku deployment
 
 on:
   workflow_dispatch:
