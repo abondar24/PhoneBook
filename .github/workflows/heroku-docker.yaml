@@ -23,8 +23,8 @@ jobs:
         uses: gonuit/heroku-docker-deploy@v1.3.3
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "phone-book-docker"
-          email: "abondar1992@gmail.com"
+          heroku_app_name: ${{secrets.HEROKU_DOCKER_APP}}
+          email: ${{secrets.HEROKU_EMAIL}}
           dockerfile_directory: build/docker/native-main
           dockerfile_name: DockerfileNative
 
