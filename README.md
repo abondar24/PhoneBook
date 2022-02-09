@@ -61,3 +61,7 @@ docker run -d  --name <some-name> -p 8080:8080 -e FAUNA_KEY=$FAUNA_KEY phonebook
 
 - YAML API spec: http://localhost:8080/swagger/phonebook-v1.0.yml
 - Swagger API doc: http://localhost:8080/doc
+
+## Heroku access
+
+- app deployed on heroku can be accessed via https://phone-book-fauna.herokuapp.com/
