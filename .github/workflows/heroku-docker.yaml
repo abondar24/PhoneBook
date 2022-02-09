@@ -40,5 +40,5 @@ jobs:
           api_key: ${{secrets.HEROKU_API_KEY}}
           app_name: "phone-book-fauna"
           email: "abondar1992@gmail.com"
-          dockerfile: 'Dockerfile'
+          dockerfile: 'DockerfileNative'
           dockerfile_path: 'build/docker/native-main'
