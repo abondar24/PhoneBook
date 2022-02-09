@@ -35,10 +35,10 @@ jobs:
           name: DockerfileNative
           path: build/docker/native-main
       - name: Deploy docker
-        uses: jctaveras/heroku-deploy@v1.0.0
+        uses: mtsmachado8/heroku-deploy@v1.0.0
         with:
           api_key: ${{secrets.HEROKU_API_KEY}}
           app_name: "phone-book-fauna"
           email: "abondar1992@gmail.com"
-          dockerfile: 'DockerfileNative'
-          dockerfile_path: 'build/docker/native-main'
+          dockerfile: '/build/docker/native-main'
+
