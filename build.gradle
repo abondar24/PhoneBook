@@ -52,6 +52,10 @@ micronaut {
     }
 }
 
+tasks.named("dockerfileNative") {
+    args("-Dmicronaut.environments=native")
+    instruction "ARG FAUNA_KEY"
+}
 
 graalvmNative {
     binaries {

@@ -46,7 +46,7 @@ Possible environments to run: dev, native.
 
 - Run docker container
 ```
-docker run -d  --name <some-name> -p 8080:8080 phonebook
+docker run -d  --name <some-name> -p 8080:8080 -e FAUNA_KEY=$FAUNA_KEY phonebook
 ```
 
 ### Note
@@ -55,6 +55,7 @@ docker run -d  --name <some-name> -p 8080:8080 phonebook
 - Interaction with Fauna is possible in two ways: via client and graphql. Default one is via client, to use graphql run
   with -Dmicronaut.environments=native
 - Fauna connection via client is not possible in native image or docker.
+- For local usage set fauna API Key in environment variable FAUNA_KEY
 
 ## API
 
