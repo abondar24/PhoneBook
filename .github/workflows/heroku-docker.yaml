@@ -40,7 +40,7 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "phone-book-docker"
           heroku_email: "abondar1992@gmail.com"
-          usedockcer: true
+          usedocker: true
           docker_build_arhs: FAUNA_KEY
           stack: "container"
         env:
