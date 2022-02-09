@@ -1,0 +1,44 @@
+name: Dcoker container  Heroku deployment
+
+on:
+  workflow_dispatch:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 17
+        uses: ayltai/setup-graalvm@v1
+        with:
+          java-version: 17
+          graalvm-version: 21.3.0
+      - name: Build
+        uses: gradle/gradle-build-action@937999e9cc2425eddc7fd62d1053baf041147db7
+        with:
+          arguments: dockerBuildNative
+      - run: mkdir -p build/docker/native-main
+      - name: Upload dockerfile
+        uses: actions/upload-artifact@master
+        with:
+          name: DockerfileNative
+          path: build/docker/native-main
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download dockerfile
+        uses: actions/download-artifact@master
+        with:
+          name: DockerfileNative
+          path: build/docker/native-main
+      - name: Deploy docker
+        uses: jctaveras/heroku-deploy@v1.0.0
+        with:
+          api_key: ${{secrets.HEROKU_API_KEY}}
+          app_name: "phone-book-fauna"
+          email: "abondar1992@gmail.com"
+          dockerfile: 'Dockerfile'
+          dockerfile_path: 'build/docker/native-main'
