@@ -15,7 +15,11 @@ jobs:
         with:
           java-version: 17
           graalvm-version: 21.3.0
-      - name: Build
+      - name: Build native image
+        uses: gradle/gradle-build-action@937999e9cc2425eddc7fd62d1053baf041147db7
+        with:
+          arguments: nativeCompile
+      - name: Generate docker file
         uses: gradle/gradle-build-action@937999e9cc2425eddc7fd62d1053baf041147db7
         with:
           arguments: dockerfileNative
