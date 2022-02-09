@@ -41,7 +41,7 @@ jobs:
           heroku_app_name: "phone-book-docker"
           heroku_email: "abondar1992@gmail.com"
           usedocker: true
-          docker_build_arhs: FAUNA_KEY
+          docker_build_args: FAUNA_KEY
           stack: "container"
         env:
           HD_FAUNA_KEY: ${{secrets.FAUNA_KEY}}
