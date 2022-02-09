@@ -1,3 +1,6 @@
+micronaut:
+  server:
+    port: 8080
 endpoints:
   caches:
     enabled: true

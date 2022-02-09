@@ -1,3 +1,6 @@
+micronaut:
+  server:
+    port: 8080
 fauna:
   graphql:
     enabled: true

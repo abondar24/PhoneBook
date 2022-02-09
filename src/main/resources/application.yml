@@ -1,4 +1,6 @@
 micronaut:
+  server:
+    port: '${PORT}'
   application:
     name: phonebook
   caches:
