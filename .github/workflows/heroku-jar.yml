@@ -16,7 +16,6 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "phone-book-fauna"
           heroku_email: "abondar1992@gmail.com"
-          buildpack: https://github.com/jkutner/graal-buildpack
         env:
           HD_FAUNA_KEY: ${{secrets.FAUNA_KEY}}
 
