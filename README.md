@@ -56,7 +56,7 @@ docker run -d  --name <some-name> -p 8080:8080 -e FAUNA_KEY=$FAUNA_KEY phonebook
   with -Dmicronaut.environments=native
 - Fauna connection via client is not possible in native image or docker.
 - For local usage set fauna API Key in environment variable FAUNA_KEY
-
+- Enable graalvmNative.toolchainDetection locally if nativeCompile fails
 ## API
 
 - YAML API spec: http://localhost:8080/swagger/phonebook-v1.0.yml

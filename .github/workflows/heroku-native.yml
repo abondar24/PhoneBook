@@ -6,36 +6,11 @@ on:
       - master
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Set up JDK 17
-        uses: ayltai/setup-graalvm@v1
-        with:
-          java-version: 17
-          graalvm-version: 21.3.0
-      - name: Build
-        uses: gradle/gradle-build-action@937999e9cc2425eddc7fd62d1053baf041147db7
-        with:
-          arguments: nativeCompile
-      - run: mkdir -p build/native/nativeCompile
-      - name: Upload artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: phonebook
-          path: build/native/nativeCompile
-
   deploy:
     needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Download artifact
-        uses: actions/download-artifact@master
-        with:
-          name: phonebook
-          path: build/native/nativeCompile
       - name: Deploy
         uses: akhileshns/heroku-deploy@v3.12.12
         with:
