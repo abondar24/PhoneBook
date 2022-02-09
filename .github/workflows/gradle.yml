@@ -36,6 +36,5 @@ jobs:
         if: always()
         with:
           files: build/test-results/test/*.xml
-  test:
-    runs-on: ubuntu-latest
+
 
