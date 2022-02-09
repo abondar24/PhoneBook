@@ -18,11 +18,11 @@ jobs:
       - name: Build native image
         uses: gradle/gradle-build-action@937999e9cc2425eddc7fd62d1053baf041147db7
         with:
-          arguments: nativeCompile
-      - name: Generate docker file
-        uses: gradle/gradle-build-action@937999e9cc2425eddc7fd62d1053baf041147db7
-        with:
-          arguments: dockerfileNative
+          arguments: dockerBuildNative
+      #      - name: Generate docker file
+      #        uses: gradle/gradle-build-action@937999e9cc2425eddc7fd62d1053baf041147db7
+      #        with:
+      #          arguments: dockerfileNative
       - name: Deploy
         uses: gonuit/heroku-docker-deploy@v1.3.3
         with:
