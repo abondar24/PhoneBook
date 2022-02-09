@@ -57,7 +57,7 @@ tasks.named("dockerfileNative") {
     instruction "ARG FAUNA_KEY"
 }
 
-task stage(dependsOn: ['nativeCompile', 'clean'])
+task stage(dependsOn: ['build', 'clean'])
 
 graalvmNative {
     binaries {

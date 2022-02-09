@@ -1,4 +1,4 @@
-name: Native image Heroku deployment
+name: Jar Heroku deployment
 
 on:
   workflow_dispatch:

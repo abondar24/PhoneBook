@@ -1,1 +1,1 @@
-web: ./build/native/nativeCompile/phonebook -Dmicronaut.environments=native
+web: ./gradlew run
