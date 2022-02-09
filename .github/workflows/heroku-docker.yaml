@@ -18,8 +18,16 @@ jobs:
       - name: Build
         uses: gradle/gradle-build-action@937999e9cc2425eddc7fd62d1053baf041147db7
         with:
-          arguments: dockerBuildNative
-      - run: docker images
+          arguments: dockerfileNative
+      - name: Deploy
+        uses: gonuit/heroku-docker-deploy@v1.3.3
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "phone-book-fauna"
+          email: "abondar1992@gmail.com"
+          dockerfile_directory: /build/docker/native-main
+          dockerfile_name: DockerfileNative
+          docker_options: "-e FAUNA_KEY=$FAUNA_KEY"
         env:
           HD_FAUNA_KEY: ${{secrets.FAUNA_KEY}}
           HD_PORT: 8080
